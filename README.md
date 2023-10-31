@@ -20,31 +20,6 @@ docker run -it -d -p 25565:25577 --name <servername> -v <servername>:/waterfall 
 ```
 
 
-## Using Specific Versions
-
-When deploying your proxy for production or if you require version stability, consider using specific image versions. For example:
-
-### Waterfall 1.19
-```bash
-docker run -it -d -p 25565:25565 --name endkind-waterfall endkind/waterfall:1.19
-```
-
-By specifying a version like 1.19, you ensure that your server runs a known and tested version of Waterfall.
-
-### All Supported Cersions
-- `latest` uses always the newest version
-- `1.20`
-- `1.19`
-- `1.18`
-- `1.17`
-- `1.16`
-- `1.15`
-- `1.14`
-- `1.13`
-- `1.12`
-- `1.11`
-
-
 ## Environment variables
 
 You can customize your Waterfall server by setting the following environment variables:
