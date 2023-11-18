@@ -14,9 +14,9 @@ This command starts a Waterfall server in detached mode (-d), maps port 25565 fr
 ## Installation and Configuration (Recommended)
 
 ```bash
-docker volume create <servername>
+docker volume create endkind-waterfall
 
-docker run -it -d -p 25565:25577 --name <servername> -v <servername>:/waterfall --restart=always endkind/waterfall:latest
+docker run -it -d -p 25565:25577 --name endkind-waterfall -v endkind-waterfall:/waterfall --restart=always endkind/waterfall:latest
 ```
 
 <<>>
