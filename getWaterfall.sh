@@ -1,42 +1,17 @@
 #!/bin/bash
+VERSION=$(cat /endkind/waterfall_version)
+BASE_URL="https://api.papermc.io/v2/projects/waterfall"
 
-WATERFALL_VERSION=${WATERFALL_VERSION:-latest}
-
-LATEST_VERSION_URL="https://api.papermc.io/v2/projects/waterfall"
-
-if [ "$WATERFALL_VERSION" == "latest" ]; then
-  LATEST_VERSION=$(curl -s "$LATEST_VERSION_URL" | jq -r '.versions | .[-1]')
-else
-  LATEST_VERSION="$WATERFALL_VERSION"
+if [ $VERSION == "latest" ]; then
+    VERSION=$(curl -s "$BASE_URL" | jq -r '.versions | .[-1]')
 fi
 
-if [ -z "$LATEST_VERSION" ]; then
-  echo "Konnte keine Informationen zur neuesten Waterfall-Version abrufen."
-  exit 1
-fi
+LATEST_BUILD=$(curl -s "$BASE_URL/versions/$VERSION" | jq -r '.builds | .[-1]')
 
-LATEST_BUILD_URL="https://api.papermc.io/v2/projects/waterfall/versions/$LATEST_VERSION"
-
-LATEST_BUILD=$(curl -s "$LATEST_BUILD_URL" | jq -r '.builds | .[-1]')
-
-if [ -z "$LATEST_BUILD" ]; then
-  echo "Konnte keine Informationen zur neuesten Build-Nummer abrufen."
-  exit 1
-fi
-
-DOWNLOAD_URL="https://api.papermc.io/v2/projects/waterfall/versions/$LATEST_VERSION/builds/$LATEST_BUILD/downloads/waterfall-$LATEST_VERSION-$LATEST_BUILD.jar"
-
-DOWNLOAD_DIR="/endkind"
-
-DESTINATION="$DOWNLOAD_DIR/server.jar"
-
-mkdir -p "$DOWNLOAD_DIR"
-
-curl -o "$DESTINATION" -L "$DOWNLOAD_URL"
-
+curl -o "/endkind/server.jar" -L "$BASE_URL/versions/$VERSION/builds/$LATEST_BUILD/downloads/waterfall-$VERSION-$LATEST_BUILD.jar"
 if [ $? -eq 0 ]; then
-  echo "Neueste Waterfall-Version ($LATEST_VERSION), Build $LATEST_BUILD heruntergeladen und gespeichert unter: $DESTINATION"
+    echo "Download Waterfall Version ($VERSION) Build ($LATEST_BUILD)"
 else
-  echo "Fehler beim Herunterladen der neuesten Waterfall-Version."
-  exit 1
+    echo "Error updating the Waterfall-Build. Please try again or recreate the container."
+    exit 1
 fi
