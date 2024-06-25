@@ -2,14 +2,13 @@
 
 This Docker image provides Waterfall Minecraft Proxy versions. You can easily run a Minecraft Proxy using this image.
 
-
 ## Quick start
 
 ```bash
 docker run -it -d -p 25565:25577 --name endkind-waterfall endkind/waterfall:latest
 ```
-This command starts a Waterfall server in detached mode (-d), maps port 25565 from the host to the container.
 
+This command starts a Waterfall server in detached mode (-d), maps port 25565 from the host to the container.
 
 ## Installation and Configuration (Recommended)
 
@@ -19,7 +18,6 @@ docker volume create endkind-waterfall
 docker run -it -d -p 25565:25577 --name endkind-waterfall -v endkind-waterfall:/waterfall --restart=always endkind/waterfall:latest
 ```
 
-<<>>
 ## Environment variables
 
 You can customize your Waterfall server by setting the following environment variables:
@@ -32,13 +30,11 @@ You can customize your Waterfall server by setting the following environment var
 
 These environment variables allow you to tailor your Waterfall server's configuration to your specific requirements. You can adjust memory allocation, specify custom Java flags, and configure various server settings to suit your needs.
 
-
 ## Additional Information
 
 - [GitHub Repository](https://github.com/Endkind/waterfall)
 - [Visit our website](https://www.endkind.net) for more information about our projects and services.
 - Connect to our Minecraft server (crossplay) at `mc.endkind.net` and start your adventure!
-
 
 ## License
 
