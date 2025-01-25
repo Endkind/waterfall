@@ -1,0 +1,16 @@
+services:
+    waterfall:
+        stdin_open: true
+        tty: true
+        ports:
+            - 25565:25577
+        container_name: endkind-waterfall
+        volumes:
+            - endkind-waterfall:/waterfall
+        environment:
+            - MAX_RAM=1G
+        restart: always
+        image: endkind/waterfall:latest
+
+volumes:
+    endkind-waterfall:
