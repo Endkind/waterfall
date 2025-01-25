@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 VERSION=$(cat /endkind/waterfall_version)
 BASE_URL="https://api.papermc.io/v2/projects/waterfall"
 
