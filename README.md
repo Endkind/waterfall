@@ -18,6 +18,22 @@ docker volume create endkind-waterfall
 docker run -it -d -p 25565:25577 --name endkind-waterfall -v endkind-waterfall:/waterfall --restart=always endkind/waterfall:latest
 ```
 
+## Using Specific Versions
+
+When deploying your server for production or if you require version stability, consider using specific image versions. For example:
+
+### Waterfall ???
+
+```bash
+docker run -it -d -p 25565:25577 endkind/waterfall:???
+```
+
+By specifying a version like ???, you ensure that your server runs a known and tested version of Waterfall.
+
+### All Supported Versions
+
+- `latest` uses always the newest version
+
 ## Environment variables
 
 You can customize your Waterfall server by setting the following environment variables:
@@ -25,14 +41,23 @@ You can customize your Waterfall server by setting the following environment var
 - `MIN_RAM` (default: 32M) - Minimum RAM allocated for the server.
 - `MAX_RAM` (default: 512M) - Maximum RAM allocated for the server.
 - `JAVA_FLAGS` - Additional Java flags generated with [flags.sh](https://flags.sh/).
-- `PAPERMC_FLAGS` (default: --nojline) - Custom Waterfall server flags.
+- `WATERFALL_FLAGS` (default: --nojline) - Custom Waterfall server flags.
 - `TZ` (example: Europe/Berlin) - Set the time zone for the server.
 
 These environment variables allow you to tailor your Waterfall server's configuration to your specific requirements. You can adjust memory allocation, specify custom Java flags, and configure various server settings to suit your needs.
 
+## How to build
+
+Replace `<version>` with the desired version.
+
+```bash
+docker build --build-arg WATERFALL_VERSION=<version> -t endkind/waterfall:<version> .
+```
+
 ## Additional Information
 
 - [GitHub Repository](https://github.com/Endkind/waterfall)
+- [Docker Repository](https://hub.docker.com/r/endkind/waterfall)
 - [Visit our website](https://www.endkind.net) for more information about our projects and services.
 - Connect to our Minecraft server (crossplay) at `mc.endkind.net` and start your adventure!
 
