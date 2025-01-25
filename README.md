@@ -33,6 +33,7 @@ By specifying a version like 1.20, you ensure that your server runs a known and 
 ### All Supported Versions
 
 - `latest` uses always the newest version
+- `1.21`
 - `1.20`
 - `1.19`
 - `1.18`
