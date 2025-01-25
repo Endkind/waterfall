@@ -22,17 +22,18 @@ docker run -it -d -p 25565:25577 --name endkind-waterfall -v endkind-waterfall:/
 
 When deploying your server for production or if you require version stability, consider using specific image versions. For example:
 
-### Waterfall 1.19
+### Waterfall 1.20
 
 ```bash
-docker run -it -d -p 25565:25577 endkind/waterfall:1.19
+docker run -it -d -p 25565:25577 endkind/waterfall:1.20
 ```
 
-By specifying a version like 1.19, you ensure that your server runs a known and tested version of Waterfall.
+By specifying a version like 1.20, you ensure that your server runs a known and tested version of Waterfall.
 
 ### All Supported Versions
 
 - `latest` uses always the newest version
+- `1.20`
 - `1.19`
 - `1.18`
 - `1.17`
