@@ -1,0 +1,53 @@
+# Waterfall - 1.12
+
+This Docker image provides Waterfall Minecraft Proxy versions. You can easily run a Minecraft Proxy using this image.
+
+## Quick start
+
+```bash
+docker run -it -d -p 25565:25577 --name endkind-waterfall endkind/waterfall:1.12
+```
+
+This command starts a Waterfall server in detached mode (-d), maps port 25565 from the host to the container.
+
+## Installation and Configuration (Recommended)
+
+```bash
+docker volume create endkind-waterfall
+
+docker run -it -d -p 25565:25577 --name endkind-waterfall -v endkind-waterfall:/waterfall --restart=always endkind/waterfall:1.12
+```
+
+## Environment variables
+
+You can customize your Waterfall server by setting the following environment variables:
+
+- `MIN_RAM` (default: 32M) - Minimum RAM allocated for the server.
+- `MAX_RAM` (default: 512M) - Maximum RAM allocated for the server.
+- `JAVA_FLAGS` - Additional Java flags generated with [flags.sh](https://flags.sh/).
+- `WATERFALL_FLAGS` (default: --nojline) - Custom Waterfall server flags.
+- `TZ` (example: Europe/Berlin) - Set the time zone for the server.
+
+These environment variables allow you to tailor your Waterfall server's configuration to your specific requirements. You can adjust memory allocation, specify custom Java flags, and configure various server settings to suit your needs.
+
+## How to build
+
+```bash
+docker build -t endkind/folia:1.21.6 .
+```
+
+## Additional Information
+
+- [GitHub Repository](https://github.com/Endkind/waterfall)
+- [Docker Repository](https://hub.docker.com/r/endkind/waterfall)
+- [Docker Compose Example](https://github.com/Endkind/waterfall/blob/main/docker-compose.yml)
+- [Visit our website](https://www.endkind.net) for more information about our projects and services.
+- Connect to our Minecraft server (crossplay) at `mc.endkind.net` and start your adventure!
+
+## License
+
+This project is licensed under the terms of the [MIT](https://github.com/Endkind/waterfall/blob/main/LICENSE) License.
+
+### Other License
+
+This project includes code derived from the [Waterfall](https://github.com/PaperMC/Waterfall) project.
