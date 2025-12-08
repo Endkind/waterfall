@@ -33,7 +33,7 @@ These environment variables allow you to tailor your Waterfall server's configur
 ## How to build
 
 ```bash
-docker build -t endkind/folia:1.21.6 .
+docker build -t endkind/waterfall:1.15 .
 ```
 
 ## Additional Information
