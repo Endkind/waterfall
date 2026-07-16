@@ -14,8 +14,15 @@ FROM eclipse-temurin:17 AS runtime
 
 LABEL Author="Endkind Ender <endkind.ender@endkind.net>"
 
-COPY entrypoint.sh /endkind/entrypoint.sh
-COPY --from=build /endkind/server.jar /endkind/server.jar
+RUN groupadd --system --gid 10001 waterfall \
+    && useradd --system --uid 10001 --gid waterfall --home-dir /data --shell /usr/sbin/nologin waterfall \
+    && mkdir -p /endkind /data \
+    && chown -R waterfall:waterfall /endkind /data
+
+COPY --chown=waterfall:waterfall entrypoint.sh /endkind/entrypoint.sh
+RUN chmod +x /endkind/entrypoint.sh
+
+COPY --from=build --chown=waterfall:waterfall /endkind/server.jar /endkind/server.jar
 
 WORKDIR /data
 VOLUME /data
@@ -24,5 +31,7 @@ ENV MIN_RAM=32M
 ENV MAX_RAM=3G
 ENV JAVA_FLAGS="-XX:+UseG1GC -XX:G1HeapRegionSize=4M -XX:+UnlockExperimentalVMOptions -XX:+ParallelRefProcEnabled -XX:+AlwaysPreTouch -XX:MaxInlineLevel=15"
 ENV WATERFALL_FLAGS="--nojline"
+
+USER waterfall
 
 ENTRYPOINT [ "/endkind/entrypoint.sh" ]
